@@ -52,7 +52,7 @@ export const scents: Scent[] = [
     notes: ["Bourbon Vanilla", "Tonka Bean", "Warm Musk", "Sandalwood", "Caramel"],
     mood: "For those who know the power of a slow entrance.",
     gradient: "linear-gradient(145deg, #2A1A08 0%, #1A1005 50%, #0A0A0A 100%)",
-    accentColor: "#C5A572",
+    accentColor: "#CFA855",
     usageTips: [
       "Best applied to warm skin — the heat activates the vanilla notes.",
       "Excellent as a bedtime ritual. The sandalwood base promotes calm.",

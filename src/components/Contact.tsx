@@ -120,7 +120,7 @@ export default function Contact() {
                 Shipping
               </p>
               <p className="font-sans text-cream-dim font-light">
-                Made to order. Ships within 3–5 business days.
+                Small batch crafted. Ships within 3–5 business days.
               </p>
             </div>
           </div>

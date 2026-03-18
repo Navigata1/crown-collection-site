@@ -177,7 +177,7 @@ export default function ScentPageClient({ scent, sizes, ingredients }: Props) {
                 {[
                   { label: 'Handcrafted', sub: 'Small batches' },
                   { label: 'No fillers', sub: 'Pure formula' },
-                  { label: '3–5 days', sub: 'Made to order' },
+                  { label: '3–5 days', sub: 'Small batch' },
                 ].map(({ label, sub }) => (
                   <div key={label} className="text-center">
                     <p className="font-sans text-xs text-cream-dim font-medium">{label}</p>

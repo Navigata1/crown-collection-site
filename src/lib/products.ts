@@ -78,35 +78,35 @@ export const sizes: Size[] = [
 export const ingredients: Ingredient[] = [
   {
     name: 'Shea Butter',
-    why: 'The foundation of the formula. Unrefined shea carries a richness that synthetic alternatives cannot replicate — deep moisture that does not sit on the skin but becomes part of it.',
+    why: 'The foundation of the formula. Organic refined for a clean white color — an intentional choice. Rich in vitamins A, E, and F, delivering deep moisture that synthetics cannot replicate. It does not sit on the skin — it becomes part of it.',
     origin: 'West Africa',
   },
   {
     name: 'Kokum Butter',
-    why: 'The most emollient of the tree butters. Kokum melts precisely at body temperature, creating that signature melt-on-contact texture that defines Crown Collection.',
+    why: 'The most emollient of the tree butters. Melts at body temperature, creating that signature melt-on-contact texture that defines Crown Collection. Rich in essential fatty acids.',
     origin: 'India',
   },
   {
     name: 'Jojoba Oil',
-    why: "Technically a liquid wax, structurally similar to the skin's own sebum. Organic jojoba balances without clogging — it works with your skin, not against it.",
+    why: "Technically a liquid wax, jojoba mirrors your skin's natural sebum for unmatched absorption. Rich in vitamins B and E — best-rated oil for hair, skin, and nails. Balances without clogging.",
     origin: 'Organic',
   },
   {
     name: 'Avocado Oil',
-    why: 'Cold-pressed and unrefined. Rich in oleic acid and vitamins A, D, and E — it penetrates deeper than most carrier oils, nourishing at the cellular level.',
+    why: 'Penetrates deeper than most carrier oils. Rich in oleic acid and vitamins A, D, and E — nourishes at the cellular level. Cold-pressed and organic, nothing stripped away.',
     origin: 'Organic',
   },
   {
     name: 'Vitamin E Oil',
-    why: 'A natural antioxidant that protects and extends. Vitamin E repairs the moisture barrier while preserving the integrity of the blend.',
+    why: 'Powerful antioxidant at high, therapeutic levels. Accelerates skin repair and healing while protecting and extending the integrity of the entire blend.',
   },
   {
     name: 'Arrowroot Powder',
-    why: 'The reason it never feels heavy. Arrowroot absorbs excess moisture and creates the weightless, velvety finish that makes Crown Collection unlike anything else.',
+    why: 'Organic — a cousin of cassava. Absorbs excess moisture and creates the weightless, non-greasy finish Crown Collection is known for. The reason it never feels heavy.',
   },
   {
     name: 'Pure Fragrance Oil',
-    why: 'Undiluted and alcohol-free. Our fragrances are not watered down — they are chosen for their longevity and complexity, blended to evolve with the warmth of your skin.',
+    why: 'Undiluted, uncut, no alcohol. Notes inspired by the world\'s most iconic perfume houses — chosen for longevity and complexity, blended to evolve with the warmth of your skin.',
   },
 ];
 

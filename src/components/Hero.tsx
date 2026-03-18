@@ -37,18 +37,18 @@ export default function Hero() {
         {/* Radial gold glow — top right */}
         <div
           className="absolute -top-1/4 right-0 w-[60vw] h-[60vw] rounded-full opacity-[0.07]"
-          style={{ background: 'radial-gradient(circle, #C5A572 0%, transparent 70%)' }}
+          style={{ background: 'radial-gradient(circle, #CFA855 0%, transparent 70%)' }}
           aria-hidden="true"
         />
         {/* Radial glow — bottom left */}
         <div
           className="absolute bottom-0 -left-1/4 w-[50vw] h-[50vw] rounded-full opacity-[0.05]"
-          style={{ background: 'radial-gradient(circle, #C5A572 0%, transparent 70%)' }}
+          style={{ background: 'radial-gradient(circle, #CFA855 0%, transparent 70%)' }}
           aria-hidden="true"
         />
         {/* Thin horizontal gold line */}
         <div className="absolute top-1/2 left-0 right-0 h-px opacity-10"
-          style={{ background: 'linear-gradient(to right, transparent, #C5A572 30%, #C5A572 70%, transparent)' }}
+          style={{ background: 'linear-gradient(to right, transparent, #CFA855 30%, #CFA855 70%, transparent)' }}
           aria-hidden="true"
         />
       </div>
@@ -94,9 +94,18 @@ export default function Hero() {
 
         {/* Scroll indicator */}
         <div className="reveal reveal-delay-5 absolute bottom-12 left-1/2 -translate-x-1/2">
-          <div className="flex flex-col items-center gap-2 text-muted">
-            <span className="font-sans text-xs tracking-widest uppercase">Scroll</span>
-            <div className="w-px h-12 bg-gradient-to-b from-gold/60 to-transparent" aria-hidden="true" />
+          <div className="flex flex-col items-center gap-2 opacity-40">
+            <div className="w-px h-10 bg-gradient-to-b from-gold/70 to-transparent" aria-hidden="true" />
+            <svg
+              width="10"
+              height="6"
+              viewBox="0 0 10 6"
+              fill="none"
+              className="text-gold animate-bounce"
+              aria-label="Scroll down"
+            >
+              <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
           </div>
         </div>
       </div>

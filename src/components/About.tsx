@@ -29,13 +29,13 @@ export default function About() {
     <section
       ref={sectionRef}
       id="story"
-      className="relative py-32 md:py-48 bg-off-black overflow-hidden"
+      className="relative py-32 md:py-48 overflow-hidden section-bg-gradient"
       aria-labelledby="about-heading"
     >
       {/* Decorative vertical line */}
       <div
         className="absolute left-8 md:left-20 top-0 bottom-0 w-px opacity-10"
-        style={{ background: 'linear-gradient(to bottom, transparent, #C5A572 30%, #C5A572 70%, transparent)' }}
+        style={{ background: 'linear-gradient(to bottom, transparent, #CFA855 30%, #CFA855 70%, transparent)' }}
         aria-hidden="true"
       />
 
@@ -82,7 +82,7 @@ export default function About() {
 
               <div className="space-y-10">
                 {[
-                  { label: 'Handcrafted', detail: 'Every batch made to order' },
+                  { label: 'Handcrafted', detail: 'Crafted in small batches' },
                   { label: 'No fillers', detail: 'Zero water, zero alcohol, zero compromise' },
                   { label: 'Seven ingredients', detail: 'Each chosen for a specific purpose' },
                   { label: 'Three scents', detail: 'Composed to evolve with your skin' },

@@ -24,8 +24,8 @@ export default function ShopPage() {
             The Collection
           </h1>
           <p className="font-sans text-cream-dim font-light text-lg max-w-xl leading-relaxed animate-fade-in-up">
-            Each scent is available in three sizes. Every jar is handcrafted — made to order,
-            never mass-produced.
+            Each scent is available in three sizes. Every jar is handcrafted — crafted in small
+            batches, never mass-produced.
           </p>
         </div>
 

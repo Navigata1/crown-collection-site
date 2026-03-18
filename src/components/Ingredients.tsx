@@ -30,7 +30,7 @@ export default function Ingredients() {
     <section
       ref={sectionRef}
       id="ingredients"
-      className="py-32 md:py-48 bg-dark-card"
+      className="py-32 md:py-48 section-bg-card-gradient"
       aria-labelledby="ingredients-heading"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12">

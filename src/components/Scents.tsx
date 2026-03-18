@@ -89,7 +89,7 @@ export default function Scents() {
                       <div className="flex items-center gap-4 mb-4">
                         <div
                           className="w-2 h-2 rounded-full"
-                          style={{ backgroundColor: '#C5A572' }}
+                          style={{ backgroundColor: '#CFA855' }}
                           aria-hidden="true"
                         />
                         <p className="font-sans text-xs tracking-widest uppercase text-gold font-medium">

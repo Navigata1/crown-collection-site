@@ -2,9 +2,9 @@
 
 @theme {
   --color-off-black: #0A0A0A;
-  --color-gold: #C5A572;
-  --color-gold-light: #E8D5A3;
-  --color-gold-dark: #9E7E4A;
+  --color-gold: #CFA855;
+  --color-gold-light: #EDD37A;
+  --color-gold-dark: #A07830;
   --color-dark-card: #1A1A1A;
   --color-dark-elevated: #222222;
   --color-cream: #F5F0EB;
@@ -130,7 +130,7 @@ body {
 
 /* Gold gradient text */
 .gold-text {
-  background: linear-gradient(135deg, #C5A572 0%, #E8D5A3 45%, #C5A572 100%);
+  background: linear-gradient(135deg, #CFA855 0%, #EDD37A 45%, #CFA855 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -138,23 +138,23 @@ body {
 
 /* Gold border shimmer */
 .gold-border {
-  border: 1px solid #C5A572;
+  border: 1px solid #CFA855;
 }
 
 /* Gold shadow */
 .gold-shadow {
-  box-shadow: 0 0 40px rgba(197, 165, 114, 0.12);
+  box-shadow: 0 0 40px rgba(207, 168, 85, 0.16);
 }
 
 .gold-shadow-hover:hover {
-  box-shadow: 0 0 60px rgba(197, 165, 114, 0.2);
+  box-shadow: 0 0 60px rgba(207, 168, 85, 0.26);
 }
 
 /* Thin horizontal divider */
 .gold-rule {
   height: 1px;
-  background: linear-gradient(to right, transparent, #C5A572, transparent);
-  opacity: 0.4;
+  background: linear-gradient(to right, transparent, #CFA855, transparent);
+  opacity: 0.5;
 }
 
 /* Letter spacing utility */
@@ -164,7 +164,7 @@ body {
 
 /* Selection */
 ::selection {
-  background: rgba(197, 165, 114, 0.3);
+  background: rgba(207, 168, 85, 0.3);
   color: #F5F0EB;
 }
 
@@ -176,6 +176,15 @@ body {
   background: #0A0A0A;
 }
 ::-webkit-scrollbar-thumb {
-  background: #C5A572;
+  background: #CFA855;
   border-radius: 2px;
+}
+
+/* Section background transitions */
+.section-bg-gradient {
+  background: linear-gradient(180deg, #0A0A0A 0%, #0D0D0D 50%, #0A0A0A 100%);
+}
+
+.section-bg-card-gradient {
+  background: linear-gradient(180deg, #161616 0%, #1A1A1A 40%, #1C1C1C 100%);
 }
