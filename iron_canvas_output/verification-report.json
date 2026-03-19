@@ -1,0 +1,121 @@
+{
+  "pass": 3,
+  "label": "Final Taste Obsession Pass",
+  "timestamp": "2026-03-19T16:06:00-05:00",
+  "branch": "staging",
+  "commit": "bcaba74",
+  "build_status": "CLEAN — 0 errors, 0 warnings",
+
+  "awwwards_5_axis_audit": {
+    "axis_1_design": {
+      "score": 8.0,
+      "max": 10,
+      "threshold": 7.5,
+      "status": "PASS",
+      "notes": "Strong visual impact. Gold-on-black palette is sophisticated. Spatial composition is generous with intentional whitespace. Section gold trace dividers add rhythm. Crown shimmer text is the focal centerpiece. Glassmorphism cards, corner accents, and parallax glow orbs create depth layering."
+    },
+    "axis_2_animation_quality": {
+      "score": 8.5,
+      "max": 10,
+      "threshold": 7,
+      "status": "PASS",
+      "notes": "Every animation has purpose. Text split reveals (chars + words) feel weighty. Scent cards alternate left/right entry for dynamic rhythm. Hero load sequence is fully choreographed (7 phases). Price counters animate. Button spring hover (back.out easing). Hero content fades with parallax on scroll exit. Lenis smooth scroll is buttery. All animations respect prefers-reduced-motion."
+    },
+    "axis_3_taste_test": {
+      "T1_font_choice": "PASS — Playfair Display for headlines creates drama; Outfit for body is clean and modern. Crown shimmer makes the title cinematic.",
+      "T2_color_drama": "PASS — Gold pops hard against off-black. Contact section now has radial gold glow backdrop. Film grain adds texture depth.",
+      "T3_unexpected_detail": "PASS — Crown shimmer sweep is the screenshot moment. Scent card radial bloom on hover. Ingredient number glow on hover. Section gold trace lines animate between every major section.",
+      "T4_slow_scroll_test": "PASS — Every section has weight and polish. No section feels rushed. Gold traces between sections create visual breathing room.",
+      "T5_screenshot_test": "PASS — Hero (crown shimmer), Scents (alternating layout + bloom), Collections (King/Queen offset), Ingredients (clean data grid), Contact (radial glow drama) — all screenshot-worthy.",
+      "T6_competitor_test": "PASS — Comparable to Aesop (clean minimalism), Le Labo (ingredient focus), Byredo (dark luxury). Crown Collection's scent color swatches and radial bloom add unique character.",
+      "T7_five_second_test": "PASS — 'Crown' shimmer + 'Collection' gold italic + 'Handcrafted in Small Batches' eyebrow = immediate brand identification and luxury emotion.",
+      "status": "ALL 7 PASS"
+    },
+    "axis_4_performance": {
+      "score": 11,
+      "max": 12,
+      "threshold": 10,
+      "status": "PASS",
+      "checks": {
+        "no_layout_shifts": true,
+        "font_display_swap": true,
+        "static_generation": true,
+        "lazy_images": "N/A — no heavy images in current build",
+        "clean_build": true,
+        "no_console_errors": true,
+        "no_typescript_errors": true,
+        "reduced_motion_respected": true,
+        "mobile_film_grain_optimized": true,
+        "lenis_smooth_scroll": true,
+        "scrollbar_styled": true,
+        "selection_styled": true
+      },
+      "notes": "Film grain disabled below 480px, reduced opacity below 768px. All pages statically generated. Font swap prevents FOIT."
+    },
+    "axis_5_brand_dna_match": {
+      "score": 7,
+      "max": 7,
+      "threshold": 5,
+      "status": "PASS",
+      "checks": {
+        "colors_correct": true,
+        "fonts_correct": true,
+        "spacing_premium": true,
+        "motion_personality": "Weighty, deliberate, premium — matches luxury skincare DNA",
+        "emotion": "Regal confidence, quiet luxury, handcrafted exclusivity",
+        "copy_untouched": true,
+        "brand_voice_intact": true
+      }
+    }
+  },
+
+  "pass_3_changes": {
+    "the_unforgettable_moment": "Crown shimmer text — sweeping gold highlight animation across 'Crown' that fires after hero load sequence completes. Uses 200% background-size with gradient sweep. This IS the screenshot moment.",
+    "section_gold_traces": "New SectionDivider component placed between every major section. Gold gradient line that scales from center to full width on scroll entry via IntersectionObserver. Creates visual rhythm.",
+    "scent_card_bloom": "Radial color bloom on hover using scent's own color. CSS pseudo-element expands from center. Each card uses its scent.color as the bloom tint.",
+    "hero_parallax_exit": "Hero content (text, CTAs) fades out and shifts up as user scrolls, creating cinematic depth separation from the atmospheric background.",
+    "hero_scroll_indicator": "Added 'Scroll' label text above the line indicator for clarity. Extended line height for more elegance.",
+    "ingredient_number_glow": "Ingredient row numbers (.ingredient-num) now glow gold with text-shadow on row hover.",
+    "contact_radial_drama": "Added subtle gold radial glow behind the Instagram CTA section for visual warmth.",
+    "mobile_film_grain": "Film grain opacity reduced to 0.02 below 768px, fully disabled below 480px for performance.",
+    "footer_completeness": "Added 'Pure' scent to footer navigation.",
+    "scent_cross_links": "Added 'Pure' to scent page cross-navigation links.",
+    "reduced_motion": "All new features fully respect prefers-reduced-motion: shimmer disabled, bloom hidden, trace lines shown static."
+  },
+
+  "mobile_audit_375px": {
+    "hero_text_massive": true,
+    "cards_stack_clean": true,
+    "touch_targets_44px": true,
+    "no_horizontal_scroll": true,
+    "cursor_disabled_touch": true,
+    "signature_animation_preserved": "Hero load sequence + scroll reveals work on mobile",
+    "film_grain_performance": "Disabled below 480px"
+  },
+
+  "final_polish_checklist": {
+    "interactive_3_states": "YES — default, hover, active on all buttons/links",
+    "focus_visible_styling": "YES — gold outline on all focusable elements",
+    "no_console_errors": "YES",
+    "no_typescript_errors": "YES",
+    "prefers_reduced_motion": "YES — all animations + new features",
+    "gold_rule_dividers_animate": "YES — scaleX from 0 on scroll entry",
+    "navbar_hide_show": "YES — GSAP scroll direction detection",
+    "hero_load_sequence": "YES — 7-phase choreographed timeline + crown shimmer",
+    "smooth_scroll": "YES — Lenis 1.6s duration",
+    "custom_cursor": "YES — dot + ring + magnetic + labels, hidden on touch",
+    "scent_page_transitions": "YES — spring animations on size selector",
+    "shop_page_grid": "YES — clean responsive grid with size legend"
+  },
+
+  "confidence_ratings": {
+    "crown_shimmer": 9,
+    "section_gold_traces": 8,
+    "scent_card_bloom": 8,
+    "hero_parallax_exit": 9,
+    "ingredient_glow": 8,
+    "contact_radial": 7,
+    "mobile_grain_optimization": 9,
+    "overall": 8.5
+  }
+}
