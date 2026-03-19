@@ -3,7 +3,10 @@
 import Link from 'next/link';
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { splitByChars } from '@/lib/splitText';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -30,85 +33,112 @@ export default function Hero() {
       return;
     }
 
-    const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
+    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
     // Split text for Crown and Collection
     const crownChars = crownRef.current ? splitByChars(crownRef.current) : [];
     const collectionChars = collectionRef.current ? splitByChars(collectionRef.current) : [];
 
     // Set initial states
-    gsap.set([glowTopRef.current, glowBottomRef.current], { autoAlpha: 0 });
+    gsap.set([glowTopRef.current, glowBottomRef.current], { autoAlpha: 0, scale: 0.8 });
     gsap.set(goldLineRef.current, { autoAlpha: 0, scaleX: 0 });
-    gsap.set(eyebrowRef.current, { autoAlpha: 0, y: 20 });
-    gsap.set(crownChars, { autoAlpha: 0, y: 60 });
-    gsap.set(collectionChars, { autoAlpha: 0, y: 60, rotation: 8 });
+    gsap.set(eyebrowRef.current, { autoAlpha: 0, y: 20, letterSpacing: '0.15em' });
+    gsap.set(crownChars, { autoAlpha: 0, y: 80, rotateX: -15 });
+    gsap.set(collectionChars, { autoAlpha: 0, y: 80, rotation: 10, rotateX: -10 });
     gsap.set(taglinesRef.current, { autoAlpha: 0 });
-    gsap.set(ctasRef.current, { autoAlpha: 0, scale: 0.9 });
-    gsap.set(scrollIndicatorRef.current, { autoAlpha: 0 });
+    gsap.set(ctasRef.current, { autoAlpha: 0, y: 20 });
+    gsap.set(scrollIndicatorRef.current, { autoAlpha: 0, y: -10 });
 
-    // Phase 0: Background glow orbs
+    // Phase 0: Background glow orbs — slow bloom
     tl.to([glowTopRef.current, glowBottomRef.current], {
       autoAlpha: 1,
-      duration: 1.2,
+      scale: 1,
+      duration: 2,
+      ease: 'power1.out',
     }, 0);
 
-    // Phase 1: Gold line
+    // Phase 1: Gold line — crisp draw
     tl.to(goldLineRef.current, {
       autoAlpha: 1,
       scaleX: 1,
-      duration: 0.8,
-    }, 0.2);
+      duration: 1,
+      ease: 'power2.inOut',
+    }, 0.3);
 
-    // Phase 2: Eyebrow
+    // Phase 2: Eyebrow with letter-spacing animation
     tl.to(eyebrowRef.current, {
       autoAlpha: 1,
       y: 0,
-      duration: 0.6,
-    }, 0.4);
+      letterSpacing: '0.25em',
+      duration: 0.8,
+      ease: 'power2.out',
+    }, 0.5);
 
-    // Phase 3: "Crown" chars
+    // Phase 3: "Crown" chars — heavy, weighty reveal
     tl.to(crownChars, {
       autoAlpha: 1,
       y: 0,
-      duration: 0.6,
+      rotateX: 0,
+      duration: 0.8,
       stagger: 0.04,
-    }, 0.6);
+      ease: 'power3.out',
+    }, 0.7);
 
-    // Phase 4: "Collection" chars with rotation
+    // Phase 4: "Collection" chars — elegant with rotation
     tl.to(collectionChars, {
       autoAlpha: 1,
       y: 0,
       rotation: 0,
-      duration: 0.6,
+      rotateX: 0,
+      duration: 0.8,
       stagger: 0.03,
-    }, 0.8);
+      ease: 'power3.out',
+    }, 0.95);
 
-    // Phase 5: Taglines fade in from sides
+    // Phase 5: Taglines fade in from sides — more distance, softer
     if (taglinesRef.current) {
       const tagChildren = taglinesRef.current.children;
       if (tagChildren.length >= 3) {
-        gsap.set(tagChildren[0], { autoAlpha: 0, x: -30 });
-        gsap.set(tagChildren[2], { autoAlpha: 0, x: 30 });
-        tl.to(taglinesRef.current, { autoAlpha: 1, duration: 0.1 }, 1.0);
-        tl.to(tagChildren[0], { autoAlpha: 1, x: 0, duration: 0.6 }, 1.0);
-        tl.to(tagChildren[2], { autoAlpha: 1, x: 0, duration: 0.6 }, 1.0);
+        gsap.set(tagChildren[0], { autoAlpha: 0, x: -50 });
+        gsap.set(tagChildren[2], { autoAlpha: 0, x: 50 });
+        tl.to(taglinesRef.current, { autoAlpha: 1, duration: 0.1 }, 1.25);
+        tl.to(tagChildren[0], { autoAlpha: 1, x: 0, duration: 0.8, ease: 'power2.out' }, 1.25);
+        tl.to(tagChildren[2], { autoAlpha: 1, x: 0, duration: 0.8, ease: 'power2.out' }, 1.25);
       } else {
-        tl.to(taglinesRef.current, { autoAlpha: 1, duration: 0.6 }, 1.0);
+        tl.to(taglinesRef.current, { autoAlpha: 1, duration: 0.8 }, 1.25);
       }
     }
 
-    // Phase 6: CTAs scale in
+    // Phase 6: CTAs — rise up with spring feel
     tl.to(ctasRef.current, {
       autoAlpha: 1,
-      scale: 1,
-      duration: 0.5,
-    }, 1.2);
+      y: 0,
+      duration: 0.6,
+      ease: 'back.out(1.4)',
+    }, 1.5);
 
-    // Phase 7: Scroll indicator
+    // Phase 7: Scroll indicator — gentle breathe in
     tl.to(scrollIndicatorRef.current, {
       autoAlpha: 1,
-      duration: 0.6,
-    }, 1.4);
+      y: 0,
+      duration: 0.8,
+      ease: 'power2.out',
+    }, 1.7);
+
+    // Hero glow parallax on scroll
+    const glowOrbs = containerRef.current?.querySelectorAll('.hero-glow-orb');
+    glowOrbs?.forEach((orb) => {
+      gsap.to(orb, {
+        y: 120,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: true,
+        },
+      });
+    });
 
     return () => {
       tl.kill();

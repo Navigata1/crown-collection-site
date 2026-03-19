@@ -66,22 +66,24 @@ export default function Collections() {
         });
       }
 
-      // King card from left
+      // King card from left — heavier, more physical
       gsap.from(kingCardRef.current, {
-        x: -80,
+        x: -100,
+        scale: 0.97,
         autoAlpha: 0,
-        duration: 0.9,
-        ease: 'power2.out',
+        duration: 1.1,
+        ease: 'power3.out',
         scrollTrigger: { trigger: kingCardRef.current, start: 'top 85%', once: true },
       });
 
-      // Queen card from right
+      // Queen card from right — offset timing for asymmetric drama
       gsap.from(queenCardRef.current, {
-        x: 80,
+        x: 100,
+        scale: 0.97,
         autoAlpha: 0,
-        duration: 0.9,
-        ease: 'power2.out',
-        scrollTrigger: { trigger: queenCardRef.current, start: 'top 85%', once: true },
+        duration: 1.1,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: queenCardRef.current, start: 'top 82%', once: true },
       });
 
       // Reveals

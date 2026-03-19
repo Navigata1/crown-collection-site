@@ -40,7 +40,7 @@ export default function Navbar() {
       { yPercent: -100, duration: 0.3, ease: 'power2.in', paused: true }
     );
 
-    ScrollTrigger.create({
+    const navTrigger = ScrollTrigger.create({
       start: 'top top',
       end: 'max',
       onUpdate: (self) => {
@@ -57,7 +57,9 @@ export default function Navbar() {
     });
 
     return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
+      navTrigger.kill();
+      showNav.kill();
+      hideNav.kill();
     };
   }, []);
 
@@ -118,7 +120,7 @@ export default function Navbar() {
             <li key={href}>
               <Link
                 href={href}
-                className="text-sm tracking-widest uppercase text-cream-dim hover:text-gold transition-colors duration-300 font-sans"
+                className="text-sm tracking-widest uppercase text-cream-dim hover:text-gold transition-colors duration-300 font-sans link-underline"
               >
                 {label}
               </Link>

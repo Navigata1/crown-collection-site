@@ -28,29 +28,29 @@ export default function Products() {
     }
 
     const ctx = gsap.context(() => {
-      // Section heading word split
+      // Section heading word split — refined
       if (headingRef.current) {
         const words = splitByWords(headingRef.current);
         gsap.from(words, {
-          y: 30,
+          y: 40,
           autoAlpha: 0,
-          duration: 0.6,
-          stagger: 0.06,
-          ease: 'power2.out',
+          duration: 0.7,
+          stagger: 0.07,
+          ease: 'power3.out',
           scrollTrigger: { trigger: headingRef.current, start: 'top 85%', once: true },
         });
       }
 
-      // Cards stagger from bottom with scale
+      // Cards stagger from bottom with scale — more physical
       if (cardsRef.current) {
         const cards = cardsRef.current.querySelectorAll('.product-card');
         gsap.from(cards, {
-          y: 60,
-          scale: 0.95,
+          y: 80,
+          scale: 0.93,
           autoAlpha: 0,
-          duration: 0.8,
-          stagger: 0.12,
-          ease: 'power2.out',
+          duration: 1,
+          stagger: 0.15,
+          ease: 'power3.out',
           scrollTrigger: { trigger: cardsRef.current, start: 'top 85%', once: true },
         });
       }

@@ -80,11 +80,18 @@ export default function ScentPageClient({ scent, sizes, ingredients }: Props) {
 
     const priceEl = sectionRef.current?.querySelector('.price-display');
     if (priceEl) {
-      gsap.from(priceEl, {
-        scale: 1.15,
-        duration: 0.4,
-        ease: 'back.out(2)',
-      });
+      gsap.fromTo(priceEl, 
+        { scale: 1.2, color: '#EDD37A' },
+        { scale: 1, color: '#CFA855', duration: 0.5, ease: 'back.out(2.5)' }
+      );
+    }
+    // Spring the selected size button
+    const selectedBtn = sectionRef.current?.querySelector('[aria-pressed="true"]');
+    if (selectedBtn) {
+      gsap.fromTo(selectedBtn,
+        { scale: 0.95 },
+        { scale: 1, duration: 0.4, ease: 'back.out(3)' }
+      );
     }
   }, [selectedSize]);
 

@@ -28,24 +28,24 @@ export default function Contact() {
     }
 
     const ctx = gsap.context(() => {
-      // Instagram section scales in
+      // Instagram section scales in — grander
       gsap.from(instagramRef.current, {
-        scale: 0.92,
+        scale: 0.9,
         autoAlpha: 0,
-        duration: 0.9,
-        ease: 'power2.out',
+        duration: 1.1,
+        ease: 'power3.out',
         scrollTrigger: { trigger: instagramRef.current, start: 'top 85%', once: true },
       });
 
-      // Contact cards stagger from right
+      // Contact cards stagger from right — more weight
       if (contactCardsRef.current) {
         const cards = contactCardsRef.current.children;
         gsap.from(cards, {
-          x: 60,
+          x: 80,
           autoAlpha: 0,
-          duration: 0.7,
-          stagger: 0.12,
-          ease: 'power2.out',
+          duration: 0.9,
+          stagger: 0.15,
+          ease: 'power3.out',
           scrollTrigger: { trigger: contactCardsRef.current, start: 'top 85%', once: true },
         });
       }
@@ -139,19 +139,19 @@ export default function Contact() {
           </div>
 
           <div ref={contactCardsRef} className="space-y-6">
-            <div className="bg-dark-card border border-gold/10 p-8">
+            <div className="bg-dark-card border border-gold/10 p-8 border-shimmer-hover card-hover-lift">
               <p className="font-sans text-xs tracking-widest uppercase text-muted mb-3">
                 Email
               </p>
               <a
                 href="mailto:hello@crowncollection.co"
-                className="font-serif text-xl text-gold hover:text-gold-light transition-colors duration-200"
+                className="font-serif text-xl text-gold hover:text-gold-light transition-colors duration-200 link-underline"
               >
                 hello@crowncollection.co
               </a>
             </div>
 
-            <div className="bg-dark-card border border-gold/10 p-8">
+            <div className="bg-dark-card border border-gold/10 p-8 border-shimmer-hover card-hover-lift">
               <p className="font-sans text-xs tracking-widest uppercase text-muted mb-3">
                 Instagram
               </p>
@@ -159,13 +159,13 @@ export default function Contact() {
                 href="https://www.instagram.com/crown.collection.official"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-serif text-xl text-gold hover:text-gold-light transition-colors duration-200"
+                className="font-serif text-xl text-gold hover:text-gold-light transition-colors duration-200 link-underline"
               >
                 @crown.collection.official
               </Link>
             </div>
 
-            <div className="bg-dark-card border border-gold/10 p-8">
+            <div className="bg-dark-card border border-gold/10 p-8 border-shimmer-hover card-hover-lift">
               <p className="font-sans text-xs tracking-widest uppercase text-muted mb-3">
                 Shipping
               </p>

@@ -28,34 +28,35 @@ export default function About() {
     }
 
     const ctx = gsap.context(() => {
-      // Left text slides from left
+      // Left text slides from left — heavier easing for weight
       gsap.from(leftColRef.current, {
-        x: -60,
+        x: -80,
         autoAlpha: 0,
-        duration: 1,
-        ease: 'power2.out',
+        duration: 1.2,
+        ease: 'power3.out',
         scrollTrigger: { trigger: leftColRef.current, start: 'top 85%', once: true },
       });
 
-      // Heading word animation
+      // Heading word animation — refined stagger
       if (headingRef.current) {
         const words = splitByWords(headingRef.current);
         gsap.from(words, {
-          y: 30,
+          y: 40,
           autoAlpha: 0,
-          duration: 0.6,
-          stagger: 0.06,
-          ease: 'power2.out',
+          duration: 0.7,
+          stagger: 0.07,
+          ease: 'power3.out',
           scrollTrigger: { trigger: headingRef.current, start: 'top 85%', once: true },
         });
       }
 
-      // Right card slides from right
+      // Right card slides from right — with subtle scale for depth
       gsap.from(rightColRef.current, {
-        x: 60,
+        x: 80,
+        scale: 0.97,
         autoAlpha: 0,
-        duration: 1,
-        ease: 'power2.out',
+        duration: 1.2,
+        ease: 'power3.out',
         scrollTrigger: { trigger: rightColRef.current, start: 'top 85%', once: true },
       });
 
@@ -151,8 +152,8 @@ export default function About() {
 
           {/* Right — asymmetric decorative block */}
           <div ref={rightColRef} className="relative">
-            {/* Large dark card */}
-            <div className="bg-dark-card gold-shadow p-12 md:p-16 relative">
+            {/* Large dark card — glassmorphism */}
+            <div className="glass-card gold-shadow p-12 md:p-16 relative">
               {/* Corner accent */}
               <div className="corner-accent absolute top-0 right-0 w-16 h-16 border-t border-r border-gold/40 origin-top-right" aria-hidden="true" />
               <div className="corner-accent absolute bottom-0 left-0 w-16 h-16 border-b border-l border-gold/40 origin-bottom-left" aria-hidden="true" />

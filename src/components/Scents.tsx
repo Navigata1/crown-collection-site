@@ -40,26 +40,26 @@ export default function Scents() {
         });
       }
 
-      // Alternating scent cards slide from left/right
+      // Alternating scent cards slide from left/right — more physical
       const cards = el.querySelectorAll('.scent-card');
       cards.forEach((card, i) => {
         const fromLeft = i % 2 === 0;
         gsap.from(card, {
-          x: fromLeft ? -80 : 80,
+          x: fromLeft ? -100 : 100,
           autoAlpha: 0,
-          duration: 0.9,
-          ease: 'power2.out',
+          duration: 1.1,
+          ease: 'power3.out',
           scrollTrigger: { trigger: card, start: 'top 85%', once: true },
         });
 
-        // Scent profile tags stagger pop-in
+        // Scent profile tags stagger pop-in — more spring
         const tags = card.querySelectorAll('.scent-tag');
         gsap.from(tags, {
-          scale: 0.8,
+          scale: 0.7,
           autoAlpha: 0,
-          duration: 0.4,
-          stagger: 0.06,
-          ease: 'back.out(1.4)',
+          duration: 0.5,
+          stagger: 0.07,
+          ease: 'back.out(1.7)',
           scrollTrigger: { trigger: card, start: 'top 75%', once: true },
         });
       });
