@@ -97,6 +97,32 @@ export const scents: Scent[] = [
       "White Tea & Ozone Blend",
     ],
   },
+  {
+    slug: "pure",
+    name: "Pure",
+    tagline: "Unscented. Honest. Essential.",
+    description:
+      "The complete formula — nothing added, nothing hidden. Pure is fragrance-free moisture for those who require absolute purity. Sensitive skin, eczema, and hospital workers: this was made for you.",
+    longDescription:
+      "Pure is the Crown Collection formula in its most honest form. Every organic ingredient that defines the base — the shea, the kokum, the jojoba, the avocado — without a single fragrance compound added. No preservatives. No synthetic chemicals. No compromise. Crafted in the same rare, limited batches as every other Crown Collection product. Gentle enough for the most reactive skin, rich enough to be your only moisturizer. When the formula is this clean, it does not need anything else.",
+    notes: ["Fragrance-Free", "Unscented", "Sensitive Skin", "Eczema-Safe"],
+    mood: "For those who trust only what they can verify.",
+    gradient: "linear-gradient(145deg, #161616 0%, #111111 50%, #0A0A0A 100%)",
+    accentColor: "#CFA855",
+    usageTips: [
+      "Safe for post-procedure skin and eczema-affected areas.",
+      "Ideal for hospital workers and healthcare professionals who cannot wear fragrance.",
+      "Apply to damp skin immediately after washing for maximum moisture retention.",
+    ],
+    ingredients: [
+      "Shea Butter (Organic Refined)",
+      "Kokum Butter",
+      "Jojoba Oil (Organic)",
+      "Avocado Oil (Organic)",
+      "Arrowroot Powder (Organic)",
+      "Vitamin E Oil",
+    ],
+  },
 ];
 
 export const sizes = [

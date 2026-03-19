@@ -57,16 +57,17 @@ export default function About() {
             <div className="reveal reveal-delay-2 space-y-6 text-cream-dim font-sans font-light leading-relaxed text-base md:text-lg">
               <p>
                 Crown Collection began with a simple belief: that what you put on your skin
-                should be worthy of you. Not mass-produced. Not compromised. Made with care,
-                in small batches, with every ingredient chosen for a reason.
+                should be worthy of you. Not mass-produced. Not compromised. Crafted in limited
+                batches, with every ingredient chosen for a reason.
               </p>
               <p>
                 Each jar of whipped body butter is handcrafted — blended, poured, and finished
                 by hand. The result is a texture that no machine has yet replicated. Airy.
                 Rich. Something that disappears into the skin rather than sitting on top of it.
+                When a batch is gone, it is gone.
               </p>
               <p>
-                This is skincare for Kings and Queens. People who know the difference between
+                This is rare skincare — for Kings and Queens who know the difference between
                 luxury and the performance of it.
               </p>
             </div>
@@ -82,10 +83,10 @@ export default function About() {
 
               <div className="space-y-10">
                 {[
-                  { label: 'Handcrafted', detail: 'Crafted in small batches' },
+                  { label: 'Limited batches', detail: 'When it is gone, it is gone' },
                   { label: 'No fillers', detail: 'Zero water, zero alcohol, zero compromise' },
-                  { label: 'Seven ingredients', detail: 'Each chosen for a specific purpose' },
-                  { label: 'Three scents', detail: 'Composed to evolve with your skin' },
+                  { label: 'Rare ingredients', detail: 'Each chosen for a specific purpose' },
+                  { label: 'Four scents', detail: 'Composed to evolve with your skin' },
                 ].map(({ label, detail }) => (
                   <div key={label} className="border-b border-gold/10 pb-8 last:border-0 last:pb-0">
                     <p className="font-serif text-xl text-gold mb-1">{label}</p>

@@ -27,7 +27,7 @@ export const scents: Scent[] = [
     name: 'Black Oak',
     tagline: 'Deep. Grounding. Sovereign.',
     description:
-      'A commanding accord rooted in dark woods and warm amber. Black Oak does not ask for attention — it commands it. Dense and atmospheric, this scent settles into the skin like a second nature, building depth with each passing hour.',
+      'A commanding accord rooted in dark woods and warm amber. Black Oak does not ask for attention — it commands it. Dense and atmospheric, this scent settles into the skin like a second nature. Crafted in limited batches — rare by design.',
     mood: 'For those who move through the world with quiet authority.',
     profile: ['Dark Cedarwood', 'Black Amber', 'Vetiver', 'Sandalwood', 'Musk'],
     color: '#2C1810',
@@ -37,7 +37,7 @@ export const scents: Scent[] = [
     name: 'Soie Vanille',
     tagline: 'Warm. Luminous. Enveloping.',
     description:
-      'French for "silk vanilla." A spun-sugar warmth that wraps the skin in something between memory and desire. Soie Vanille is not sweet in the ordinary sense — it is rich, textured, deeply comforting without apology.',
+      'French for "silk vanilla." A spun-sugar warmth that wraps the skin in something between memory and desire. Soie Vanille is not sweet in the ordinary sense — it is rich, textured, rare. Limited batches only.',
     mood: 'For those who leave warmth in every room they enter.',
     profile: ['Madagascar Vanilla', 'Caramelized Tonka', 'White Musk', 'Warm Amber', 'Benzoin'],
     color: '#3D2B1F',
@@ -47,10 +47,20 @@ export const scents: Scent[] = [
     name: 'Moonlight',
     tagline: 'Clean. Ethereal. Boundless.',
     description:
-      'A luminous nocturnal presence. Moonlight captures the quality of cool air after dusk — weightless, impossibly clean, with a softness that lingers like the glow of the moon itself. Worn by those who carry mystery with ease.',
+      'A luminous nocturnal presence. Moonlight captures the quality of cool air after dusk — weightless, impossibly clean, with a softness that lingers like the glow of the moon itself. A rare scent, made in limited batches.',
     mood: 'For those who are most themselves in the quiet hours.',
     profile: ['White Jasmine', 'Cool Iris', 'Sheer Musk', 'Sea Salt', 'Light Cedarwood'],
     color: '#1A1E2E',
+  },
+  {
+    slug: 'pure',
+    name: 'Pure',
+    tagline: 'Unscented. Honest. Essential.',
+    description:
+      'No fragrance. No preservatives. No chemicals. Pure is the formula distilled to its most essential form — the same rare, organic base without anything added. Designed for sensitive skin, eczema, and those who require absolute purity.',
+    mood: 'For those who need nothing but the best — uncompromised.',
+    profile: ['Fragrance-Free', 'Sensitive Skin', 'Eczema-Safe', 'Hospital Grade'],
+    color: '#2A2A2A',
   },
 ];
 

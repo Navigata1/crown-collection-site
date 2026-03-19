@@ -3,6 +3,7 @@ import Hero from '@/components/Hero';
 import About from '@/components/About';
 import Products from '@/components/Products';
 import Scents from '@/components/Scents';
+import Collections from '@/components/Collections';
 import Ingredients from '@/components/Ingredients';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
@@ -16,6 +17,7 @@ export default function HomePage() {
         <About />
         <Products />
         <Scents />
+        <Collections />
         <Ingredients />
         <Contact />
       </main>

@@ -19,7 +19,7 @@ export default function Ingredients() {
           }
         });
       },
-      { threshold: 0.05 },
+      { threshold: 0, rootMargin: '0px 0px -40px 0px' },
     );
 
     observer.observe(el);
@@ -30,7 +30,7 @@ export default function Ingredients() {
     <section
       ref={sectionRef}
       id="ingredients"
-      className="py-32 md:py-48 section-bg-card-gradient"
+      className="py-32 md:py-48 section-bg-card-gradient overflow-x-hidden"
       aria-labelledby="ingredients-heading"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12">
