@@ -140,6 +140,22 @@ export default function Hero() {
       });
     });
 
+    // Hero content fades + shifts up as you scroll away — cinematic exit
+    const heroContent = containerRef.current?.querySelector('.hero-content');
+    if (heroContent) {
+      gsap.to(heroContent, {
+        y: -60,
+        opacity: 0,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: 'top top',
+          end: '60% top',
+          scrub: true,
+        },
+      });
+    }
+
     return () => {
       tl.kill();
     };
@@ -176,7 +192,7 @@ export default function Hero() {
         />
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-12 text-center">
+      <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-12 text-center hero-content">
         {/* Eyebrow */}
         <p ref={eyebrowRef} className="hero-animate font-sans text-xs tracking-widest uppercase text-gold mb-8 font-medium">
           Handcrafted in Small Batches
@@ -184,7 +200,7 @@ export default function Hero() {
 
         {/* Headline */}
         <h1 className="font-serif text-6xl sm:text-7xl md:text-8xl lg:text-9xl leading-none tracking-tight mb-8">
-          <span ref={crownRef} className="block text-cream">Crown</span>
+          <span ref={crownRef} className="block crown-shimmer-text">Crown</span>
           <span ref={collectionRef} className="block gold-text italic">Collection</span>
         </h1>
 
@@ -219,8 +235,9 @@ export default function Hero() {
 
         {/* Scroll indicator */}
         <div ref={scrollIndicatorRef} className="hero-animate absolute bottom-12 left-1/2 -translate-x-1/2">
-          <div className="flex flex-col items-center gap-2 opacity-40">
-            <div className="w-px h-10 bg-gradient-to-b from-gold/70 to-transparent" aria-hidden="true" />
+          <div className="flex flex-col items-center gap-3 opacity-50">
+            <span className="font-sans text-[10px] tracking-[0.3em] uppercase text-gold/60">Scroll</span>
+            <div className="w-px h-12 bg-gradient-to-b from-gold/50 to-transparent" aria-hidden="true" />
             <svg
               width="10"
               height="6"

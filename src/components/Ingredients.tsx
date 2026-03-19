@@ -114,7 +114,7 @@ export default function Ingredients() {
               <div className="grid md:grid-cols-3 gap-4 md:gap-12 items-start">
                 {/* Number + Name */}
                 <div className="flex items-baseline gap-4">
-                  <span className="font-sans text-xs text-muted font-light tabular-nums">
+                  <span className="ingredient-num font-sans text-xs text-muted font-light tabular-nums">
                     {String(i + 1).padStart(2, '0')}
                   </span>
                   <div>

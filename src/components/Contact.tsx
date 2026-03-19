@@ -84,7 +84,13 @@ export default function Contact() {
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Instagram CTA */}
-        <div ref={instagramRef} className="text-center mb-24 md:mb-32">
+        <div ref={instagramRef} className="text-center mb-24 md:mb-32 relative">
+          {/* Subtle gold radial behind the section for drama */}
+          <div
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[50vw] h-[50vw] opacity-[0.04] pointer-events-none rounded-full"
+            style={{ background: 'radial-gradient(circle, #CFA855 0%, transparent 60%)' }}
+            aria-hidden="true"
+          />
           <p className="font-sans text-xs tracking-widest uppercase text-gold mb-6 font-medium">
             Follow the Crown
           </p>

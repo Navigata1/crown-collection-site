@@ -153,11 +153,11 @@ export default function Products() {
               {/* CTA */}
               <Link
                 href="/shop"
-                className="font-sans text-xs tracking-widest uppercase text-gold hover:text-cream transition-colors duration-200 font-medium inline-flex items-center gap-3 group"
+                className="font-sans text-xs tracking-widest uppercase text-gold hover:text-cream transition-colors duration-200 font-medium inline-flex items-center gap-3 group/cta"
               >
                 Choose a Scent
                 <span
-                  className="block w-6 h-px bg-gold group-hover:w-10 transition-all duration-300"
+                  className="block w-6 h-px bg-gold group-hover/cta:w-10 transition-all duration-300"
                   aria-hidden="true"
                 />
               </Link>

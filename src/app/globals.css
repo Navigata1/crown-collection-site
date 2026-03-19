@@ -61,6 +61,64 @@
   }
 }
 
+/* ========== PASS 3: SWEEPING GOLD HIGHLIGHT — THE UNFORGETTABLE MOMENT ========== */
+@keyframes crown-shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.crown-shimmer-text {
+  background: linear-gradient(
+    90deg,
+    #F5F0EB 0%,
+    #F5F0EB 35%,
+    #EDD37A 45%,
+    #CFA855 50%,
+    #EDD37A 55%,
+    #F5F0EB 65%,
+    #F5F0EB 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: crown-shimmer 4s ease-in-out 2.5s infinite;
+}
+
+/* ========== PASS 3: SECTION DIVIDER — ANIMATED GOLD TRACE ========== */
+.section-gold-trace {
+  position: relative;
+  height: 1px;
+  overflow: hidden;
+}
+
+.section-gold-trace::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(207, 168, 85, 0.1) 10%,
+    rgba(207, 168, 85, 0.5) 30%,
+    #CFA855 50%,
+    rgba(207, 168, 85, 0.5) 70%,
+    rgba(207, 168, 85, 0.1) 90%,
+    transparent 100%
+  );
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.section-gold-trace.visible::after {
+  transform: scaleX(1);
+}
+
 :root {
   --background: #0A0A0A;
   --foreground: #F5F0EB;
@@ -198,6 +256,36 @@ body::after {
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(207, 168, 85, 0.12);
 }
 
+/* ========== PASS 3: SCENT CARD HOVER RADIAL BLOOM ========== */
+.scent-card-bloom {
+  position: relative;
+  overflow: hidden;
+}
+
+.scent-card-bloom::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: var(--bloom-color, rgba(207, 168, 85, 0.06));
+  transform: translate(-50%, -50%);
+  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.6s ease;
+  opacity: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.scent-card-bloom:hover::before {
+  width: 120%;
+  height: 300%;
+  opacity: 1;
+}
+
 /* ========== PASS 2: LINK UNDERLINE DRAW (left → right) ========== */
 .link-underline {
   position: relative;
@@ -286,6 +374,34 @@ button:focus-visible,
   }
 }
 
+/* ========== PASS 3: INGREDIENT NUMBER GLOW ========== */
+.ingredient-num {
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.ingredient-row:hover .ingredient-num {
+  color: #CFA855;
+  text-shadow: 0 0 12px rgba(207, 168, 85, 0.3);
+}
+
+/* ========== PASS 3: MOBILE FILM GRAIN REDUCTION ========== */
+@media (max-width: 768px) {
+  body::after {
+    opacity: 0.02 !important;
+  }
+}
+
+@media (max-width: 480px) {
+  body::after {
+    display: none !important;
+  }
+}
+
+/* ========== PASS 3: HERO SCROLL FADE — parallax depth ========== */
+.hero-fade-on-scroll {
+  transition: opacity 0.1s linear;
+}
+
 /* prefers-reduced-motion: show everything immediately */
 @media (prefers-reduced-motion: reduce) {
   .reveal,
@@ -311,5 +427,20 @@ button:focus-visible,
   .product-card:hover,
   .card-hover-lift:hover {
     transform: none !important;
+  }
+
+  .crown-shimmer-text {
+    animation: none !important;
+    background: none !important;
+    -webkit-text-fill-color: #F5F0EB !important;
+  }
+
+  .section-gold-trace::after {
+    transform: scaleX(1) !important;
+    transition: none !important;
+  }
+
+  .scent-card-bloom::before {
+    display: none !important;
   }
 }

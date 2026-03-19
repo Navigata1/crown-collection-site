@@ -288,7 +288,7 @@ export default function ScentPageClient({ scent, sizes, ingredients }: Props) {
             Explore Other Scents
           </p>
           <div className="flex flex-wrap gap-4">
-            {['black-oak', 'soie-vanille', 'moonlight']
+            {['black-oak', 'soie-vanille', 'moonlight', 'pure']
               .filter((s) => s !== scent.slug)
               .map((s) => {
                 const name = s

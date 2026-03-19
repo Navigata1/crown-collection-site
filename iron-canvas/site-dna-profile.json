@@ -1,0 +1,182 @@
+{
+  "project": "Crown Collection",
+  "url": "https://crown-collection-site-env-staging-islanddevcrew.vercel.app",
+  "date": "2026-03-19",
+  "type": "D",
+  "type_description": "E-commerce luxury product showcase — body butter brand",
+
+  "color_dna": {
+    "dominant": "#0A0A0A",
+    "dominant_name": "off-black",
+    "secondary": "#1A1A1A",
+    "secondary_name": "dark-card",
+    "elevated": "#222222",
+    "text_primary": "#F5F0EB",
+    "text_primary_name": "cream",
+    "text_secondary": "#D4C9BC",
+    "text_secondary_name": "cream-dim",
+    "text_muted": "#6B6560",
+    "accent_primary": "#CFA855",
+    "accent_primary_name": "gold",
+    "accent_light": "#EDD37A",
+    "accent_dark": "#A07830",
+    "gradient_start": "#CFA855",
+    "gradient_end": "#EDD37A",
+    "border_default": "rgba(207, 168, 85, 0.08)",
+    "border_hover": "rgba(207, 168, 85, 0.4)",
+    "shadow_color": "rgba(207, 168, 85, 0.16)",
+    "emotion": "Opulent, intimate, exclusive — OLED black with warm gold accents creates a boutique luxury feel. The cream text on deep black gives editorial sophistication.",
+    "contrast_wcag": "AA",
+    "temperature": "warm",
+    "saturation": "muted-rich (gold is vivid, everything else is restrained)"
+  },
+
+  "typography_dna": {
+    "display_font": "Playfair Display",
+    "display_weights": ["400", "500", "600", "700"],
+    "display_styles": ["normal", "italic"],
+    "body_font": "Outfit",
+    "body_weights": ["300", "400", "500", "600"],
+    "accent_font": null,
+    "mono_font": null,
+    "scale_ratio": "custom fluid clamp",
+    "hero_size": "text-6xl sm:text-7xl md:text-8xl lg:text-9xl",
+    "weight_range": "300-700",
+    "letter_spacing_hero": "tracking-tight (-0.02em)",
+    "letter_spacing_eyebrow": "tracking-widest (0.1em) uppercase",
+    "line_height_body": "leading-relaxed (1.625)",
+    "text_personality": "editorial-luxury (Playfair = traditional serif elegance, Outfit = modern geometric clarity)",
+    "typographic_move": "Italic gold gradient 'Collection' in hero — the serif italic against geometric sans creates tension",
+    "flag": "STRONG — intentional, distinctive pairing. No TYPE_GAP."
+  },
+
+  "spatial_dna": {
+    "base_unit": "4px (Tailwind default)",
+    "max_width": "max-w-7xl (80rem / 1280px)",
+    "grid_columns": "responsive (1-col mobile, 2-3 col desktop)",
+    "section_padding": "py-32 md:py-48 (8rem / 12rem)",
+    "inner_padding": "px-6 md:px-12",
+    "layout_personality": "asymmetric with editorial tension",
+    "density": "airy — generous whitespace between sections",
+    "negative_space_use": "Deliberate — large section padding creates breathing room"
+  },
+
+  "motion_dna": {
+    "existing_animations": [
+      "Lenis smooth scroll (duration: 1.6, synced to GSAP ticker)",
+      "Hero load choreography (7-phase timeline: glow → gold line → eyebrow → Crown chars → Collection chars → taglines → CTAs → scroll indicator)",
+      "Custom cursor (dot + ring, lerp 0.12, magnetic effect on data-magnetic elements, cursor-label on hover)",
+      "Scroll reveals (gsap.from y:40-80, autoAlpha:0, power2/3.out, once:true)",
+      "Word split animations (custom splitByWords/splitByChars utility)",
+      "Price counter animations (gsap.to textContent)",
+      "Alternating card slides (left/right based on index)",
+      "Gold rule dividers (scaleX: 0→1)",
+      "Scent tag spring pop (scale:0.7, back.out(1.7))",
+      "Navbar show/hide on scroll direction",
+      "Glow orb parallax on scroll",
+      "Footer column stagger",
+      "Film grain overlay (SVG noise, 3.5% opacity, mix-blend-mode: overlay)"
+    ],
+    "easing_character": "smooth-to-springy (power2-3.out for reveals, back.out for CTAs, elastic for springs)",
+    "duration_base": "0.7-0.8s for reveals",
+    "duration_hero": "~1.7s total load choreography",
+    "stagger_pattern": "sequential (0.04-0.15s increments)",
+    "scroll_behavior": "Lenis smooth",
+    "motion_personality": "Weighty-luxury — animations have physical mass, not floaty",
+    "motion_gaps": [
+      "No scroll-pinned product reveal (missing Apple-style canvas sequence)",
+      "No page transitions between routes",
+      "No 3D elements",
+      "Scent color swatches are CSS gradients only — no product imagery",
+      "No image artifacts at all — entire site is text/CSS-only"
+    ]
+  },
+
+  "imagery_census": {
+    "total_images": 0,
+    "note": "ZERO images on the entire site. All visuals are CSS-only (gradients, borders, glows, SVG noise). This is the #1 opportunity — AI-generated product photography would transform the site.",
+    "images": []
+  },
+
+  "sections": [
+    { "name": "Navbar", "type": "fixed/sticky", "notes": "Hide on scroll down, show on scroll up. Glassmorphism bg on scroll." },
+    { "name": "Hero", "type": "full-screen", "notes": "Gold glow orbs, gold line, char-split headline, taglines, dual CTAs, scroll indicator. Already has strong load choreography." },
+    { "name": "About (Our Story)", "type": "2-column", "notes": "Left text, right glassmorphism card with 4 key stats. Corner accents. Vertical gold parallax line." },
+    { "name": "Products", "type": "3-column grid", "notes": "Size cards (Travel/Everyday/Indulgence) with price counters. Dark card bg." },
+    { "name": "Scents", "type": "alternating cards", "notes": "3 scent cards + Pure. Color swatch left, text right (alternating). Scent profile tags." },
+    { "name": "Collections", "type": "2-column asymmetric", "notes": "King Scent / Queen Scent cards. Offset layout. Gradient hero bands." },
+    { "name": "Ingredients", "type": "list/table", "notes": "7 ingredients with numbered rows. Alternating slide-in from sides." },
+    { "name": "Contact", "type": "2-column", "notes": "Instagram CTA + contact cards. Gold rule divider." },
+    { "name": "Footer", "type": "4-column", "notes": "Brand, nav, info, tagline. Gold glow gradient line." }
+  ],
+
+  "tech_stack": {
+    "framework": "Next.js (App Router, TypeScript)",
+    "css": "Tailwind CSS 4 (@import 'tailwindcss', @theme)",
+    "animation": "GSAP 3 + ScrollTrigger",
+    "scroll": "Lenis (@studio-freight/lenis)",
+    "text_split": "Custom utility (splitByChars, splitByWords)",
+    "cursor": "Custom GSAP-powered cursor component",
+    "deployment": "Vercel",
+    "fonts": "Google Fonts (Playfair Display, Outfit)"
+  },
+
+  "strengths": [
+    "Exceptional typography pairing (Playfair Display italic gold gradient + Outfit geometric)",
+    "Hero load choreography is premium — 7-phase timeline with char splits, weighty easing",
+    "Custom cursor with magnetic effect and label system already implemented",
+    "Lenis + GSAP + ScrollTrigger properly synced (ticker + lagSmoothing)",
+    "Reduced-motion handling on EVERY component (not just lip service)",
+    "Film grain overlay adds depth without being heavy",
+    "Gold-tinted shadows throughout (not generic gray)",
+    "Glassmorphism used sparingly and appropriately (About section card)",
+    "All hover states use spring easing (cubic-bezier(0.34, 1.56, 0.64, 1))",
+    "Focus-visible states on all interactive elements",
+    "Content is genuinely well-written — luxury copy that doesn't feel fake",
+    "Scent alternating card layout creates visual rhythm",
+    "Eyebrow text with animated letter-spacing is a nice touch"
+  ],
+
+  "gaps": [
+    {
+      "type": "ARTIFACT_GAP",
+      "description": "ZERO images on the entire site. No product photography, no lifestyle shots, no hero imagery. Everything is CSS gradients and text.",
+      "priority": "CRITICAL",
+      "leverage": "AI-generated product photography would immediately elevate this from 'good concept' to 'premium brand'. This is the single highest-ROI improvement possible."
+    },
+    {
+      "type": "MOTION_GAP",
+      "description": "No scroll-driven product reveal (Canvas + ScrollTrigger). The site scrolls linearly — missing the Apple/DJI-style immersive product experience.",
+      "priority": "HIGH",
+      "leverage": "A scroll sequence showing the body butter jar opening, cream texture, ingredient reveal would be the unforgettable moment."
+    },
+    {
+      "type": "TRANSITION_GAP",
+      "description": "No page transitions. Navigating to /shop or /shop/[scent] is a hard cut.",
+      "priority": "MEDIUM",
+      "leverage": "Barba.js or Next.js AnimatePresence would add cohesion between pages."
+    },
+    {
+      "type": "3D_GAP",
+      "description": "No 3D product visualization. Could benefit from a rotating product jar.",
+      "priority": "LOW",
+      "leverage": "Nice to have but not critical — the scroll sequence handles the immersive reveal."
+    },
+    {
+      "type": "INTERACTION_GAP",
+      "description": "Scent card color swatches are just flat CSS gradients. No depth, no texture, no visual interest.",
+      "priority": "MEDIUM",
+      "leverage": "AI-generated atmospheric images for each scent would add major visual richness."
+    }
+  ],
+
+  "brand_personality_matrix": {
+    "minimal_vs_maximal": 7,
+    "serious_vs_playful": 3,
+    "classic_vs_avant_garde": 6,
+    "digital_vs_organic": 4,
+    "quiet_vs_bold": 7,
+    "fast_vs_contemplative": 4,
+    "summary": "Crown Collection is a serious luxury brand that uses bold visual techniques (gold accents, dramatic typography, glassmorphism) but maintains restraint through generous whitespace and editorial pacing. It's warm and organic in feel despite being digital-first — the text reads like a boutique lookbook, not a tech product."
+  }
+}

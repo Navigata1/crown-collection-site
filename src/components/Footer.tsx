@@ -103,6 +103,7 @@ export default function Footer() {
                 { href: '/shop/black-oak', label: 'Black Oak' },
                 { href: '/shop/soie-vanille', label: 'Soie Vanille' },
                 { href: '/shop/moonlight', label: 'Moonlight' },
+                { href: '/shop/pure', label: 'Pure' },
               ].map(({ href, label }) => (
                 <li key={href}>
                   <Link

@@ -111,7 +111,8 @@ export default function Scents() {
             >
               <Link
                 href={`/shop/${scent.slug}`}
-                className="block bg-dark-card border border-gold/10 hover:border-gold/30 transition-all duration-300 gold-shadow-hover overflow-hidden"
+                className="block bg-dark-card border border-gold/10 hover:border-gold/30 transition-all duration-300 gold-shadow-hover overflow-hidden scent-card-bloom"
+                style={{ '--bloom-color': `${scent.color}22` } as React.CSSProperties}
                 aria-label={`Explore ${scent.name} — ${scent.tagline}`}
               >
                 <div className="grid md:grid-cols-2 gap-0">
