@@ -2,7 +2,11 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import type { Scent, Size, Ingredient } from '@/lib/products';
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface Props {
   scent: Scent;
@@ -13,19 +17,76 @@ interface Props {
 export default function ScentPageClient({ scent, sizes, ingredients }: Props) {
   const [selectedSize, setSelectedSize] = useState<Size>(sizes[1]); // default: Everyday
   const sectionRef = useRef<HTMLDivElement>(null);
+  const prevSizeRef = useRef<string>(sizes[1].size);
 
   useEffect(() => {
     const el = sectionRef.current;
     if (!el) return;
 
-    // Stagger reveal on load
-    const reveals = el.querySelectorAll('.reveal, .reveal-scale');
-    const timer = setTimeout(() => {
-      reveals.forEach((r) => r.classList.add('visible'));
-    }, 100);
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      el.querySelectorAll('.reveal, .reveal-scale').forEach((r) => {
+        (r as HTMLElement).style.visibility = 'visible';
+        (r as HTMLElement).style.opacity = '1';
+        (r as HTMLElement).style.transform = 'none';
+      });
+      return;
+    }
 
-    return () => clearTimeout(timer);
+    const ctx = gsap.context(() => {
+      // Stagger reveal on load
+      const reveals = el.querySelectorAll('.reveal');
+      gsap.from(reveals, {
+        y: 40,
+        autoAlpha: 0,
+        duration: 0.8,
+        stagger: 0.1,
+        ease: 'power2.out',
+        delay: 0.1,
+      });
+
+      const scaleReveals = el.querySelectorAll('.reveal-scale');
+      gsap.from(scaleReveals, {
+        scale: 0.97,
+        autoAlpha: 0,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: 'power2.out',
+        delay: 0.2,
+      });
+
+      // Scent profile tags pop-in
+      const tags = el.querySelectorAll('.scent-tag');
+      gsap.from(tags, {
+        scale: 0.8,
+        autoAlpha: 0,
+        duration: 0.4,
+        stagger: 0.06,
+        ease: 'back.out(1.4)',
+        delay: 0.6,
+      });
+    }, el);
+
+    return () => ctx.revert();
   }, []);
+
+  // Size selector spring animation
+  useEffect(() => {
+    if (selectedSize.size === prevSizeRef.current) return;
+    prevSizeRef.current = selectedSize.size;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    const priceEl = sectionRef.current?.querySelector('.price-display');
+    if (priceEl) {
+      gsap.from(priceEl, {
+        scale: 1.15,
+        duration: 0.4,
+        ease: 'back.out(2)',
+      });
+    }
+  }, [selectedSize]);
 
   return (
     <div ref={sectionRef}>
@@ -76,10 +137,10 @@ export default function ScentPageClient({ scent, sizes, ingredients }: Props) {
             </ol>
           </nav>
 
-          <p className="reveal reveal-delay-1 font-sans text-xs tracking-widest uppercase text-gold mb-4 font-medium">
+          <p className="reveal font-sans text-xs tracking-widest uppercase text-gold mb-4 font-medium">
             {scent.tagline}
           </p>
-          <h1 className="reveal reveal-delay-2 font-serif text-5xl md:text-7xl lg:text-8xl text-cream">
+          <h1 className="reveal font-serif text-5xl md:text-7xl lg:text-8xl text-cream">
             {scent.name}
           </h1>
         </div>
@@ -95,12 +156,12 @@ export default function ScentPageClient({ scent, sizes, ingredients }: Props) {
             </p>
 
             {/* Mood quote */}
-            <blockquote className="reveal reveal-delay-1 border-l-2 border-gold/40 pl-6 mb-10">
+            <blockquote className="reveal border-l-2 border-gold/40 pl-6 mb-10">
               <p className="font-serif italic text-cream-dim text-lg">{scent.mood}</p>
             </blockquote>
 
             {/* Scent profile */}
-            <div className="reveal reveal-delay-2">
+            <div className="reveal">
               <p className="font-sans text-xs tracking-widest uppercase text-gold mb-4 font-medium">
                 Scent Profile
               </p>
@@ -108,7 +169,7 @@ export default function ScentPageClient({ scent, sizes, ingredients }: Props) {
                 {scent.profile.map((note) => (
                   <span
                     key={note}
-                    className="font-sans text-xs tracking-wider text-cream-dim border border-gold/20 px-4 py-2"
+                    className="scent-tag font-sans text-xs tracking-wider text-cream-dim border border-gold/20 px-4 py-2"
                   >
                     {note}
                   </span>
@@ -118,7 +179,7 @@ export default function ScentPageClient({ scent, sizes, ingredients }: Props) {
           </div>
 
           {/* Right — purchase */}
-          <div className="reveal reveal-delay-2">
+          <div className="reveal">
             <div className="bg-dark-card border border-gold/10 p-8 md:p-10 gold-shadow">
               {/* Corner accents */}
               <div className="flex items-start justify-between mb-8">
@@ -128,7 +189,7 @@ export default function ScentPageClient({ scent, sizes, ingredients }: Props) {
                   </p>
                   <p className="font-serif text-3xl text-cream">{scent.name}</p>
                 </div>
-                <span className="font-serif text-3xl text-gold">${selectedSize.price}</span>
+                <span className="price-display font-serif text-3xl text-gold">${selectedSize.price}</span>
               </div>
 
               {/* Size selector */}
@@ -166,6 +227,7 @@ export default function ScentPageClient({ scent, sizes, ingredients }: Props) {
 
               {/* Add to cart CTA */}
               <button
+                data-magnetic
                 className="w-full bg-gold text-off-black font-sans text-xs tracking-widest uppercase font-semibold py-4 hover:bg-gold-light active:scale-95 transition-all duration-200 mb-4"
                 aria-label={`Add ${scent.name} ${selectedSize.size} ${selectedSize.label} to cart — $${selectedSize.price}`}
               >
@@ -231,6 +293,7 @@ export default function ScentPageClient({ scent, sizes, ingredients }: Props) {
                   <Link
                     key={s}
                     href={`/shop/${s}`}
+                    data-magnetic
                     className="border border-gold/30 text-cream hover:border-gold hover:text-gold text-xs tracking-widest uppercase font-sans font-medium px-6 py-3 transition-all duration-200 active:scale-95"
                   >
                     {name}

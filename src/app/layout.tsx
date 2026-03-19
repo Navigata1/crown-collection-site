@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { Playfair_Display, Outfit } from 'next/font/google';
 import './globals.css';
+import SmoothScroll from '@/components/SmoothScroll';
+import Cursor from '@/components/Cursor';
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -46,7 +48,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${playfair.variable} ${outfit.variable}`}>
-      <body className="bg-off-black text-cream antialiased">{children}</body>
+      <body className="bg-off-black text-cream antialiased">
+        <SmoothScroll>
+          {children}
+        </SmoothScroll>
+        <Cursor />
+      </body>
     </html>
   );
 }

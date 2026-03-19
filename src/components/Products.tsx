@@ -2,29 +2,98 @@
 
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { splitByWords } from '@/lib/splitText';
 import { sizes } from '@/lib/products';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Products() {
   const sectionRef = useRef<HTMLElement>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
+  const cardsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const el = sectionRef.current;
     if (!el) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const reveals = entry.target.querySelectorAll('.reveal, .reveal-scale');
-            reveals.forEach((r) => r.classList.add('visible'));
-          }
-        });
-      },
-      { threshold: 0.1 },
-    );
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      el.querySelectorAll('.reveal, .reveal-scale').forEach((r) => {
+        (r as HTMLElement).style.opacity = '1';
+        (r as HTMLElement).style.transform = 'none';
+      });
+      return;
+    }
 
-    observer.observe(el);
-    return () => observer.disconnect();
+    const ctx = gsap.context(() => {
+      // Section heading word split
+      if (headingRef.current) {
+        const words = splitByWords(headingRef.current);
+        gsap.from(words, {
+          y: 30,
+          autoAlpha: 0,
+          duration: 0.6,
+          stagger: 0.06,
+          ease: 'power2.out',
+          scrollTrigger: { trigger: headingRef.current, start: 'top 85%', once: true },
+        });
+      }
+
+      // Cards stagger from bottom with scale
+      if (cardsRef.current) {
+        const cards = cardsRef.current.querySelectorAll('.product-card');
+        gsap.from(cards, {
+          y: 60,
+          scale: 0.95,
+          autoAlpha: 0,
+          duration: 0.8,
+          stagger: 0.12,
+          ease: 'power2.out',
+          scrollTrigger: { trigger: cardsRef.current, start: 'top 85%', once: true },
+        });
+      }
+
+      // Price counter animations
+      const priceEls = el.querySelectorAll('.price-counter');
+      priceEls.forEach((priceEl) => {
+        const target = parseFloat((priceEl as HTMLElement).dataset.price || '0');
+        const obj = { value: 0 };
+        gsap.to(obj, {
+          value: target,
+          duration: 1,
+          ease: 'power2.out',
+          onUpdate: () => {
+            (priceEl as HTMLElement).textContent = `$${Math.round(obj.value)}`;
+          },
+          scrollTrigger: { trigger: priceEl, start: 'top 85%', once: true },
+        });
+      });
+
+      // Remaining reveals
+      el.querySelectorAll('.reveal').forEach((reveal) => {
+        gsap.from(reveal, {
+          y: 40,
+          autoAlpha: 0,
+          duration: 0.8,
+          ease: 'power2.out',
+          scrollTrigger: { trigger: reveal, start: 'top 85%', once: true },
+        });
+      });
+
+      // Gold rule dividers — animate width
+      el.querySelectorAll('.gold-rule').forEach((rule) => {
+        gsap.from(rule, {
+          scaleX: 0,
+          duration: 0.8,
+          ease: 'power2.out',
+          scrollTrigger: { trigger: rule, start: 'top 90%', once: true },
+        });
+      });
+    }, el);
+
+    return () => ctx.revert();
   }, []);
 
   return (
@@ -41,22 +110,24 @@ export default function Products() {
             The Collection
           </p>
           <h2
+            ref={headingRef}
             id="products-heading"
-            className="reveal reveal-delay-1 font-serif text-4xl md:text-5xl lg:text-6xl text-cream"
+            className="font-serif text-4xl md:text-5xl lg:text-6xl text-cream"
           >
             Whipped Body Butter
           </h2>
-          <p className="reveal reveal-delay-2 mt-6 text-cream-dim font-sans font-light text-lg max-w-xl mx-auto leading-relaxed">
+          <p className="reveal mt-6 text-cream-dim font-sans font-light text-lg max-w-xl mx-auto leading-relaxed">
             One formula. Three sizes. Every scent. Choose the ritual that fits your life.
           </p>
         </div>
 
         {/* Size cards */}
-        <div className="grid sm:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
-          {sizes.map((size, i) => (
+        <div ref={cardsRef} className="grid sm:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
+          {sizes.map((size) => (
             <article
               key={size.size}
-              className={`reveal reveal-delay-${i + 1} reveal-scale group bg-off-black border border-gold/10 hover:border-gold/40 gold-shadow-hover transition-all duration-300 p-8 md:p-10 flex flex-col`}
+              className="product-card group bg-off-black border border-gold/10 hover:border-gold/40 gold-shadow-hover transition-all duration-300 p-8 md:p-10 flex flex-col"
+              data-cursor-label="Shop"
             >
               {/* Price badge */}
               <div className="flex items-start justify-between mb-8">
@@ -66,7 +137,9 @@ export default function Products() {
                   </p>
                   <p className="font-serif text-2xl text-cream">{size.label}</p>
                 </div>
-                <span className="font-serif text-3xl text-gold">${size.price}</span>
+                <span className="price-counter font-serif text-3xl text-gold" data-price={size.price}>
+                  ${size.price}
+                </span>
               </div>
 
               {/* Description */}
@@ -96,6 +169,7 @@ export default function Products() {
         <div className="reveal text-center mt-20">
           <Link
             href="/shop"
+            data-magnetic
             className="inline-flex items-center justify-center border border-gold/40 text-gold text-xs tracking-widest uppercase font-sans font-medium px-10 py-4 hover:bg-gold hover:text-off-black active:scale-95 transition-all duration-300"
           >
             View Full Collection

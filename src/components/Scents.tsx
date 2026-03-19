@@ -2,29 +2,81 @@
 
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { splitByWords } from '@/lib/splitText';
 import { scents } from '@/lib/products';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Scents() {
   const sectionRef = useRef<HTMLElement>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
     const el = sectionRef.current;
     if (!el) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const reveals = entry.target.querySelectorAll('.reveal, .reveal-scale');
-            reveals.forEach((r) => r.classList.add('visible'));
-          }
-        });
-      },
-      { threshold: 0.08 },
-    );
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      el.querySelectorAll('.reveal, .reveal-scale, .scent-card').forEach((r) => {
+        (r as HTMLElement).style.opacity = '1';
+        (r as HTMLElement).style.transform = 'none';
+      });
+      return;
+    }
 
-    observer.observe(el);
-    return () => observer.disconnect();
+    const ctx = gsap.context(() => {
+      // Heading word animation
+      if (headingRef.current) {
+        const words = splitByWords(headingRef.current);
+        gsap.from(words, {
+          y: 30,
+          autoAlpha: 0,
+          duration: 0.6,
+          stagger: 0.06,
+          ease: 'power2.out',
+          scrollTrigger: { trigger: headingRef.current, start: 'top 85%', once: true },
+        });
+      }
+
+      // Alternating scent cards slide from left/right
+      const cards = el.querySelectorAll('.scent-card');
+      cards.forEach((card, i) => {
+        const fromLeft = i % 2 === 0;
+        gsap.from(card, {
+          x: fromLeft ? -80 : 80,
+          autoAlpha: 0,
+          duration: 0.9,
+          ease: 'power2.out',
+          scrollTrigger: { trigger: card, start: 'top 85%', once: true },
+        });
+
+        // Scent profile tags stagger pop-in
+        const tags = card.querySelectorAll('.scent-tag');
+        gsap.from(tags, {
+          scale: 0.8,
+          autoAlpha: 0,
+          duration: 0.4,
+          stagger: 0.06,
+          ease: 'back.out(1.4)',
+          scrollTrigger: { trigger: card, start: 'top 75%', once: true },
+        });
+      });
+
+      // Remaining reveals
+      el.querySelectorAll('.reveal').forEach((reveal) => {
+        gsap.from(reveal, {
+          y: 40,
+          autoAlpha: 0,
+          duration: 0.8,
+          ease: 'power2.out',
+          scrollTrigger: { trigger: reveal, start: 'top 85%', once: true },
+        });
+      });
+    }, el);
+
+    return () => ctx.revert();
   }, []);
 
   return (
@@ -41,12 +93,11 @@ export default function Scents() {
             The Scents
           </p>
           <h2
+            ref={headingRef}
             id="scents-heading"
-            className="reveal reveal-delay-1 font-serif text-4xl md:text-5xl lg:text-6xl text-cream max-w-2xl"
+            className="font-serif text-4xl md:text-5xl lg:text-6xl text-cream max-w-2xl"
           >
-            Three worlds.
-            <br />
-            <span className="italic">One for yours.</span>
+            Three worlds. One for yours.
           </h2>
         </div>
 
@@ -55,7 +106,8 @@ export default function Scents() {
           {scents.map((scent, i) => (
             <article
               key={scent.slug}
-              className={`reveal reveal-delay-${i + 1} group`}
+              className="scent-card group"
+              data-cursor-label="View"
             >
               <Link
                 href={`/shop/${scent.slug}`}
@@ -111,7 +163,7 @@ export default function Scents() {
                         {scent.profile.map((note) => (
                           <span
                             key={note}
-                            className="font-sans text-xs tracking-wider text-muted border border-gold/15 px-3 py-1"
+                            className="scent-tag font-sans text-xs tracking-wider text-muted border border-gold/15 px-3 py-1"
                           >
                             {note}
                           </span>

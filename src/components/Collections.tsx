@@ -2,6 +2,11 @@
 
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { splitByWords } from '@/lib/splitText';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const collections = [
   {
@@ -28,25 +33,80 @@ const collections = [
 
 export default function Collections() {
   const sectionRef = useRef<HTMLElement>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
+  const kingCardRef = useRef<HTMLDivElement>(null);
+  const queenCardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const el = sectionRef.current;
     if (!el) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const reveals = entry.target.querySelectorAll('.reveal, .reveal-scale');
-            reveals.forEach((r) => r.classList.add('visible'));
-          }
-        });
-      },
-      { threshold: 0.05 },
-    );
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      el.querySelectorAll('.reveal, .reveal-scale').forEach((r) => {
+        (r as HTMLElement).style.opacity = '1';
+        (r as HTMLElement).style.transform = 'none';
+      });
+      if (kingCardRef.current) kingCardRef.current.style.opacity = '1';
+      if (queenCardRef.current) queenCardRef.current.style.opacity = '1';
+      return;
+    }
 
-    observer.observe(el);
-    return () => observer.disconnect();
+    const ctx = gsap.context(() => {
+      // Heading word animation
+      if (headingRef.current) {
+        const words = splitByWords(headingRef.current);
+        gsap.from(words, {
+          y: 30,
+          autoAlpha: 0,
+          duration: 0.6,
+          stagger: 0.06,
+          ease: 'power2.out',
+          scrollTrigger: { trigger: headingRef.current, start: 'top 85%', once: true },
+        });
+      }
+
+      // King card from left
+      gsap.from(kingCardRef.current, {
+        x: -80,
+        autoAlpha: 0,
+        duration: 0.9,
+        ease: 'power2.out',
+        scrollTrigger: { trigger: kingCardRef.current, start: 'top 85%', once: true },
+      });
+
+      // Queen card from right
+      gsap.from(queenCardRef.current, {
+        x: 80,
+        autoAlpha: 0,
+        duration: 0.9,
+        ease: 'power2.out',
+        scrollTrigger: { trigger: queenCardRef.current, start: 'top 85%', once: true },
+      });
+
+      // Reveals
+      el.querySelectorAll('.reveal').forEach((reveal) => {
+        gsap.from(reveal, {
+          y: 40,
+          autoAlpha: 0,
+          duration: 0.8,
+          ease: 'power2.out',
+          scrollTrigger: { trigger: reveal, start: 'top 85%', once: true },
+        });
+      });
+
+      // Gold rule dividers
+      el.querySelectorAll('.gold-rule').forEach((rule) => {
+        gsap.from(rule, {
+          scaleX: 0,
+          duration: 0.8,
+          ease: 'power2.out',
+          scrollTrigger: { trigger: rule, start: 'top 90%', once: true },
+        });
+      });
+    }, el);
+
+    return () => ctx.revert();
   }, []);
 
   return (
@@ -63,23 +123,23 @@ export default function Collections() {
             The Collections
           </p>
           <h2
+            ref={headingRef}
             id="collections-heading"
-            className="reveal reveal-delay-1 font-serif text-4xl md:text-5xl lg:text-6xl text-cream max-w-2xl"
+            className="font-serif text-4xl md:text-5xl lg:text-6xl text-cream max-w-2xl"
           >
-            A crown for every throne.
-            <br />
-            <span className="italic">Which is yours?</span>
+            A crown for every throne. Which is yours?
           </h2>
         </div>
 
         {/* Cards */}
         <div className="grid md:grid-cols-2 gap-6 md:gap-8 items-stretch">
           {/* King Scent — larger card */}
-          <div className="reveal reveal-delay-2 md:col-span-1 md:row-span-1">
+          <div ref={kingCardRef} className="md:col-span-1 md:row-span-1">
             <Link
               href="/shop"
               className="group block h-full bg-dark-card border border-gold/10 hover:border-gold/30 transition-all duration-300 gold-shadow-hover overflow-hidden"
               aria-label="Shop King Scent — Men's Collection"
+              data-cursor-label="Shop"
             >
               {/* Top band */}
               <div
@@ -90,16 +150,13 @@ export default function Collections() {
                 }}
                 aria-hidden="true"
               >
-                {/* Corner accents */}
                 <div className="absolute top-0 left-0 w-12 h-12 border-t border-l border-gold/30" />
                 <div className="absolute bottom-0 right-0 w-12 h-12 border-b border-r border-gold/30" />
-                {/* Watermark */}
                 <span className="font-serif text-6xl md:text-8xl italic text-white/5 select-none leading-none">
                   King
                 </span>
               </div>
 
-              {/* Content */}
               <div className="p-8 md:p-10 lg:p-12 flex flex-col justify-between min-h-[280px]">
                 <div>
                   <div className="flex items-center gap-3 mb-5">
@@ -128,13 +185,13 @@ export default function Collections() {
           </div>
 
           {/* Queen Scent — offset card */}
-          <div className="reveal reveal-delay-3 md:mt-16">
+          <div ref={queenCardRef} className="md:mt-16">
             <Link
               href="/shop"
               className="group block h-full bg-dark-card border border-gold/10 hover:border-gold/30 transition-all duration-300 gold-shadow-hover overflow-hidden"
               aria-label="Shop Queen Scent — Women's Collection"
+              data-cursor-label="Shop"
             >
-              {/* Top band */}
               <div
                 className="relative h-40 md:h-56 flex items-end p-8 md:p-10"
                 style={{
@@ -143,16 +200,13 @@ export default function Collections() {
                 }}
                 aria-hidden="true"
               >
-                {/* Corner accents */}
                 <div className="absolute top-0 right-0 w-12 h-12 border-t border-r border-gold/30" />
                 <div className="absolute bottom-0 left-0 w-12 h-12 border-b border-l border-gold/30" />
-                {/* Watermark */}
                 <span className="font-serif text-6xl md:text-8xl italic text-white/5 select-none leading-none self-end ml-auto">
                   Queen
                 </span>
               </div>
 
-              {/* Content */}
               <div className="p-8 md:p-10 lg:p-12 flex flex-col justify-between min-h-[280px]">
                 <div>
                   <div className="flex items-center gap-3 mb-5">

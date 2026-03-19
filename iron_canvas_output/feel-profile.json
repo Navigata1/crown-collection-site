@@ -1,0 +1,26 @@
+{
+  "primary_emotion": "Regal exclusivity — you are someone who deserves rare, handcrafted luxury",
+  "secondary_emotions": [
+    "Intimate warmth — handmade by the person answering your email",
+    "Earned sophistication — not inherited wealth, but self-crowned authority",
+    "Scarcity desire — when it's gone, it's gone"
+  ],
+  "aspirational_target": "After visiting, you feel like you discovered something rare that most people will never know about — and you want it before it sells out",
+  "anti_feelings": [
+    "Generic skincare brand (Bath & Body Works energy)",
+    "Mass-produced corporate luxury (L'Oreal/Estée Lauder vibes)",
+    "Feminine-only (this is Kings AND Queens)",
+    "Cheap or amateur (must feel premium despite being a startup)",
+    "Cold or clinical (must feel warm, intimate, human)"
+  ],
+  "reference_vibe": "Walking into a private atelier in Paris where the owner knows your name, the lights are low, the products are unlabeled, and everything smells incredible",
+  "brand_personality_matrix": {
+    "minimal_vs_maximal": "3/10 — highly minimal, negative space is the luxury signal",
+    "serious_vs_playful": "8/10 — serious, regal, no whimsy",
+    "classic_vs_avant_garde": "6/10 — classic luxury base with modern editorial flair",
+    "digital_vs_organic": "4/10 — leans organic (handmade, natural ingredients, warmth)",
+    "quiet_vs_bold": "6/10 — quiet confidence with bold gold moments",
+    "fast_vs_contemplative": "7/10 — contemplative, slow luxury scroll experience",
+    "summary": "Crown Collection is a warm, intimate luxury brand that uses restraint as its power move. Dark spaces, warm gold, editorial typography — it whispers rather than shouts, but when it speaks, you listen."
+  }
+}

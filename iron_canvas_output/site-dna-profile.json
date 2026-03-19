@@ -1,0 +1,135 @@
+{
+  "color_dna": {
+    "dominant": "#0A0A0A",
+    "secondary": "#1A1A1A",
+    "text_primary": "#F5F0EB",
+    "text_secondary": "#D4C9BC",
+    "text_muted": "#6B6560",
+    "accent_primary": "#CFA855",
+    "accent_secondary": "#EDD37A",
+    "accent_dark": "#A07830",
+    "dark_elevated": "#222222",
+    "border_color": "rgba(207, 168, 85, 0.1)",
+    "accent_rgb": "207, 168, 85",
+    "emotion": "Regal luxury, intimate exclusivity, handcrafted premium — not corporate gold but warm, earned gold",
+    "contrast_wcag": "AAA (cream on off-black)",
+    "temperature": "warm",
+    "saturation": "muted with selective vivid gold accents"
+  },
+  "typography_dna": {
+    "display_font": "Playfair Display",
+    "body_font": "Outfit",
+    "accent_font": null,
+    "mono_font": null,
+    "scale_ratio": "custom (clamp-based fluid)",
+    "weight_range": "300-700",
+    "letter_spacing_hero": "tight (tracking-tight on headings)",
+    "letter_spacing_labels": "0.25em (tracking-widest-plus on eyebrows/labels)",
+    "line_height_body": "relaxed",
+    "text_personality": "editorial luxury — Playfair serif for display + Outfit geometric sans for body",
+    "flag": "STRONG PAIRING — Playfair + Outfit is intentional, not generic"
+  },
+  "spatial_dna": {
+    "base_unit": "varies (Tailwind 4/6/8/10/12/16)",
+    "max_width": "1400px (max-w-7xl = 1280px used, nav uses 1400px)",
+    "grid_columns": "CSS Grid with md:grid-cols-2/3/4",
+    "section_padding": "py-32 md:py-48 (8rem / 12rem)",
+    "layout_personality": "editorial asymmetric — left-aligned text blocks with decorative right panels, staggered card offsets",
+    "density": "airy — generous whitespace, art gallery spacing"
+  },
+  "motion_dna": {
+    "existing_animations": [
+      "CSS reveal (opacity + translateY, 0.8s cubic-bezier)",
+      "CSS reveal-scale (opacity + scale, 0.6s ease-out)",
+      "gold-shimmer keyframe (opacity pulse 3s infinite)",
+      "bounce (on scroll chevron)",
+      "hover transitions (border-color, box-shadow, transform, color — 200-300ms)",
+      "navbar blur transition on scroll (500ms)"
+    ],
+    "easing_character": "smooth with one spring-like bezier (0.25, 0.46, 0.45, 0.94)",
+    "duration_base": "300ms",
+    "scroll_behavior": "native smooth scroll (CSS scroll-behavior: smooth)",
+    "motion_gaps": [
+      "NO smooth scroll engine (no Lenis)",
+      "NO GSAP — all CSS transitions/animations",
+      "NO scroll-triggered parallax or pinning",
+      "NO text splitting animations (SplitText)",
+      "NO page load sequence (just CSS stagger delays)",
+      "NO cursor effects",
+      "NO page transitions between routes",
+      "NO counter animations",
+      "NO image parallax",
+      "NO section transition effects"
+    ]
+  },
+  "imagery_census": [
+    {
+      "name": "No product images",
+      "location": "public/ only has default Next.js SVGs",
+      "purpose": "CRITICAL GAP — luxury body butter site with zero product photography",
+      "quality": "N/A — needs AI generation"
+    }
+  ],
+  "strengths": [
+    "Strong editorial luxury typography pairing (Playfair + Outfit)",
+    "Consistent gold accent system with gradient text, borders, shadows, rules",
+    "Well-structured component architecture (9 components, clean separation)",
+    "Excellent copy — brand voice is compelling, exclusive, authentic",
+    "Good semantic HTML with ARIA labels and skip links",
+    "Asymmetric layouts create visual interest (About section, Collections offset)",
+    "Mobile-first responsive design with proper dvh usage",
+    "Scent detail pages with interactive size selector",
+    "Tier system (Standard/Elite/Royal) adds premium depth",
+    "Gender split collections (King/Queen) well-positioned"
+  ],
+  "gaps": [
+    {
+      "type": "MOTION_GAP",
+      "description": "No smooth scroll engine — native browser scroll feels cheap for luxury",
+      "priority": "HIGH",
+      "leverage": "Lenis + GSAP ScrollTrigger transforms the entire feel"
+    },
+    {
+      "type": "MOTION_GAP",
+      "description": "No GSAP at all — CSS reveals are functional but lack premium timing/stagger",
+      "priority": "HIGH",
+      "leverage": "GSAP ScrollTrigger section reveals + text animations"
+    },
+    {
+      "type": "MOTION_GAP",
+      "description": "No page load sequence — content just fades in with CSS delays",
+      "priority": "HIGH",
+      "leverage": "Choreographed hero entry (bg → glow → headline → tagline → CTA)"
+    },
+    {
+      "type": "ARTIFACT_GAP",
+      "description": "Zero product images — luxury site with no visuals of the actual product",
+      "priority": "HIGH",
+      "leverage": "AI-generated product photography transforms credibility"
+    },
+    {
+      "type": "INTERACTION_GAP",
+      "description": "No cursor system — luxury sites need custom cursor at minimum trailing",
+      "priority": "MEDIUM",
+      "leverage": "Trailing cursor with magnetic CTAs adds premium feel"
+    },
+    {
+      "type": "MOTION_GAP",
+      "description": "No text splitting/scramble animations for headlines",
+      "priority": "MEDIUM",
+      "leverage": "SplitText on key headlines adds editorial sophistication"
+    },
+    {
+      "type": "TRANSITION_GAP",
+      "description": "No page transitions between home and shop pages",
+      "priority": "MEDIUM",
+      "leverage": "Iron curtain transition maintains immersion"
+    },
+    {
+      "type": "MOTION_GAP",
+      "description": "No parallax on decorative elements or background glows",
+      "priority": "LOW",
+      "leverage": "Subtle parallax on gold glow orbs adds depth"
+    }
+  ]
+}
